@@ -43,7 +43,7 @@ for (int i = 0; i < 6; ++i)
 for (int i = 0; i < 4; ++i)
     writer.WriteItem(1, DateTime.Now, i);
 
-writer.Stream.Close();
+writer.Close();
 ```
 
 ### Reading from Database
@@ -73,7 +73,7 @@ var reader = new FastSeries.Reader("test.db");
         Console.WriteLine("{0}    {1}", item.Item1, item.Item2);
 }
 
-reader.Stream.Close();
+reader.Close();
 ```
 
 Please note that you should **NOT** call `Reset` of the of the underlying stream. You can instead use

@@ -33,7 +33,7 @@ namespace FastSeries.Sample
             for (int i = 0; i < 4; ++i)
                 writer.WriteItem(1, DateTime.Now, i);
 
-            writer.Stream.Close();
+            writer.Close();
         }
 
         static void read()
@@ -62,7 +62,7 @@ namespace FastSeries.Sample
                     Console.WriteLine("{0}    {1}", item.Item1, item.Item2);
             }
 
-            reader.Stream.Close();
+            reader.Close();
         }
 
         static void Main(string[] args)

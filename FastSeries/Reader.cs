@@ -60,5 +60,10 @@ namespace FastSeries
             }
             return result;
         }
+
+        public void Close()
+        {
+            Stream.Close();
+        }
     }
 }

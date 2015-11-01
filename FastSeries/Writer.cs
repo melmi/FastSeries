@@ -32,5 +32,15 @@ namespace FastSeries
         {
             new Record { TableID = tableId, Time = time, Value = value }.WriteToStream(writer);
         }
+
+        public void Flush()
+        {
+            Stream.Flush();
+        }
+
+        public void Close()
+        {
+            Stream.Close();
+        }
     }
 }
