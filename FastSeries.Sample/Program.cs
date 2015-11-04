@@ -20,18 +20,21 @@ namespace FastSeries.Sample
             Console.WriteLine(">>> Writing data.");
 
             var writer = new FastSeries.Writer("test.db");
+            var start = DateTime.Now;
 
             for (int i = 0; i < 7; ++i)
-                writer.WriteItem(0, DateTime.Now, i);
+                writer.WriteItem(0, DateTime.Now - start, i);
 
             for (int i = 0; i < 9; ++i)
-                writer.WriteItem(1, DateTime.Now, i);
+                writer.WriteItem(1, DateTime.Now - start, i);
+
+            writer.Flush();
 
             for (int i = 0; i < 6; ++i)
-                writer.WriteItem(0, DateTime.Now, i);
+                writer.WriteItem(0, DateTime.Now - start, i);
 
             for (int i = 0; i < 4; ++i)
-                writer.WriteItem(1, DateTime.Now, i);
+                writer.WriteItem(1, DateTime.Now - start, i);
 
             writer.Close();
         }

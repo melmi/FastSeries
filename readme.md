@@ -9,7 +9,7 @@ to other libraries. *FastSeries* is MIT licensed.
 
 ## Format
 
-*FastSeries* orginize timeseries in tables. Each table has a description and pairs of `DateTime` and
+*FastSeries* orginize timeseries in tables. Each table has a description and pairs of `TimeSpan` and
 `float` rows.
 
 ## Usage Sample
@@ -29,19 +29,24 @@ FastSeries.Creator.Create("test.db", "temprature (centigrads)", "speed (m/s)");
 Writing to a database is as simple as creating an instance of `Writer` and calling its `WriteItem` method:
 
 ```C#
+Console.WriteLine(">>> Writing data.");
+
 var writer = new FastSeries.Writer("test.db");
+var start = DateTime.Now;
 
 for (int i = 0; i < 7; ++i)
-    writer.WriteItem(0, DateTime.Now, i);
+    writer.WriteItem(0, DateTime.Now - start, i);
 
 for (int i = 0; i < 9; ++i)
-    writer.WriteItem(1, DateTime.Now, i);
+    writer.WriteItem(1, DateTime.Now - start, i);
+
+writer.Flush();
 
 for (int i = 0; i < 6; ++i)
-    writer.WriteItem(0, DateTime.Now, i);
+    writer.WriteItem(0, DateTime.Now - start, i);
 
 for (int i = 0; i < 4; ++i)
-    writer.WriteItem(1, DateTime.Now, i);
+    writer.WriteItem(1, DateTime.Now - start, i);
 
 writer.Close();
 ```

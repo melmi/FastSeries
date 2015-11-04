@@ -34,9 +34,9 @@ namespace FastSeries
             Stream.Position = zeroPosition;
         }
 
-        public List<Tuple<DateTime, float>> TryRead(UInt16 tableId, int n)
+        public List<Tuple<TimeSpan, float>> TryRead(UInt16 tableId, int n)
         {
-            var result = new List<Tuple<DateTime, float>>(n);
+            var result = new List<Tuple<TimeSpan, float>>(n);
             while (Stream.Position != Stream.Length && n >= 0)
             {
                 var rec = Record.FromStream(reader);
@@ -49,9 +49,9 @@ namespace FastSeries
             return result;
         }
 
-        public List<Tuple<DateTime, float>> ReadToEnd(UInt16 tableId)
+        public List<Tuple<TimeSpan, float>> ReadToEnd(UInt16 tableId)
         {
-            var result = new List<Tuple<DateTime, float>>();
+            var result = new List<Tuple<TimeSpan, float>>();
             while (Stream.Position != Stream.Length)
             {
                 var rec = Record.FromStream(reader);
