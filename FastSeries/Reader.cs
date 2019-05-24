@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Diagnostics;
 namespace FastSeries
 {
     public class Reader
@@ -34,29 +34,31 @@ namespace FastSeries
             Stream.Position = zeroPosition;
         }
 
-        public List<Tuple<TimeSpan, float>> TryRead(UInt16 tableId, int n)
+        public List<Tuple<TimeSpan, Data>> TryRead(UInt16 tableId, int n)
         {
-            var result = new List<Tuple<TimeSpan, float>>(n);
+            var result = new List<Tuple<TimeSpan, Data>>(n);
             while (Stream.Position != Stream.Length && n >= 0)
             {
                 var rec = Record.FromStream(reader);
                 if (rec.TableID == tableId)
                 {
-                    result.Add(Tuple.Create(rec.Time, rec.Value));
+                    result.Add(Tuple.Create(rec.Time, rec.Values));
                     --n;
                 }
             }
             return result;
         }
 
-        public List<Tuple<TimeSpan, float>> ReadToEnd(UInt16 tableId)
+        public List<Tuple<TimeSpan, Data>> ReadToEnd(UInt16 tableId)
         {
-            var result = new List<Tuple<TimeSpan, float>>();
+            var result = new List<Tuple<TimeSpan, Data>>();
             while (Stream.Position != Stream.Length)
             {
+
+                Debug.WriteLine(Stream.Length);
                 var rec = Record.FromStream(reader);
                 if (rec.TableID == tableId)
-                    result.Add(Tuple.Create(rec.Time, rec.Value));
+                    result.Add(Tuple.Create(rec.Time, rec.Values));
             }
             return result;
         }

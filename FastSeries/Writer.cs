@@ -28,9 +28,9 @@ namespace FastSeries
         {
         }
 
-        public void WriteItem(UInt16 tableId, TimeSpan time, float value)
+        public void WriteItem(UInt16 tableId, TimeSpan time, Data value)
         {
-            new Record { TableID = tableId, Time = time, Value = value }.WriteToStream(writer);
+            new Record{ TableID = tableId, Time = time, Values = value }.WriteToStream(writer);
         }
 
         public void Flush()
