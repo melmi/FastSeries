@@ -40,9 +40,9 @@ namespace FastSeries
             while (Stream.Position != Stream.Length && n >= 0)
             {
                 var rec = Record.FromStream(reader);
-                if (rec.TableID == tableId)
+                if (rec.Values.TableID == tableId)
                 {
-                    result.Add(Tuple.Create(rec.Time, rec.Values));
+                    result.Add(Tuple.Create(rec.Values.Time, rec.Values));
                     --n;
                 }
             }
@@ -55,8 +55,8 @@ namespace FastSeries
             while (Stream.Position != Stream.Length)
             {
                 var rec = Record.FromStream(reader);
-                if (rec.TableID == tableId)
-                    result.Add(Tuple.Create(rec.Time, rec.Values));
+                if (rec.Values.TableID == tableId)
+                    result.Add(Tuple.Create(rec.Values.Time, rec.Values));
             }
             return result;
         }

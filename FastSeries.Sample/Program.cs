@@ -25,17 +25,20 @@ namespace FastSeries.Sample
             var writer = new FastSeries.Writer("test.db");
             var start = DateTime.Now;
             Data data = new Data {
+                TableID = 0,
                 ID = 1,
-                CTime = DateTime.Now.ToString(),
+                CTime = string.Format("{0:s}", DateTime.Now),
                 Name = "Test",
                 TYPE = 'A',
                 VALUE_STR = "123.00",
                 VALUE_NUM = 123.00,
                 VALUE_RAW = "123.00"
             };
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 5; i++)
             {
-                writer.WriteItem(0, DateTime.Now - start, data);
+                data.Time = DateTime.Now - start;
+                writer.WriteItem( data);
+                Thread.Sleep(100);
             }
 
             writer.Flush();

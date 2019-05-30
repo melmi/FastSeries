@@ -8,6 +8,8 @@ namespace FastSeries
 {
     public struct Data
     {
+        public UInt32 TableID { get; set; }
+        public TimeSpan Time { get; set; }
         public Int32 ID { get; set; }
         public string CTime { get; set; }
         public string Name { get; set; }

@@ -39,9 +39,9 @@ namespace FastSeries
         /// <param name="tableId"></param>
         /// <param name="time"></param>
         /// <param name="value"></param>
-        public void WriteItem(UInt16 tableId, TimeSpan time, Data value)
+        public void WriteItem(Data value)
         {
-             new  Record{ TableID = tableId, Time = time, Values = value }.WriteToStream(writer);
+             new  Record{ Values = value }.WriteToStream(writer);
         }
         /// <summary>
         /// Commit changes which you have wrote;
