@@ -54,8 +54,6 @@ namespace FastSeries
             var result = new List<Tuple<TimeSpan, Data>>();
             while (Stream.Position != Stream.Length)
             {
-
-                Debug.WriteLine(Stream.Length);
                 var rec = Record.FromStream(reader);
                 if (rec.TableID == tableId)
                     result.Add(Tuple.Create(rec.Time, rec.Values));

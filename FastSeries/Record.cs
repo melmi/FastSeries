@@ -16,36 +16,66 @@ namespace FastSeries
         public Data Values;
         public static Record FromStream(BinaryReader reader)
         {
-           System.Diagnostics.Debug.WriteLine("_");
-            System.Diagnostics.Debug.WriteLine(reader.BaseStream.Length);
             var tableID = reader.ReadUInt16();
             var ticks = reader.ReadInt64();
             var time = new TimeSpan(ticks);
             Data values = new Data { };
             values.ID = reader.ReadInt32();
-            
             values.CTime = reader.ReadString();
             values.Name = reader.ReadString();
             values.TYPE = reader.ReadChar();
             values.VALUE_STR = reader.ReadString();
             values.VALUE_NUM = reader.ReadDouble();
-            values.VALUE_RAW = reader.ReadString() ;
+            values.VALUE_RAW = reader.ReadString();
            
             return new Record { Time = time, TableID = tableID, Values = values};
         }
 
-        public void WriteToStream(BinaryWriter writer)
+        public async void WriteToStream(BinaryWriter writer)
         {
-
-            writer.Write(TableID);
-            writer.Write(Time.Ticks);
-            writer.Write(Values.ID);
-            writer.Write(Values.CTime);
-            writer.Write(Values.Name);
-            writer.Write(Values.TYPE);
-            writer.Write(Values.VALUE_STR);
-            writer.Write(Values.VALUE_NUM);
-            writer.Write(Values.VALUE_RAW);
+            using(writer) {
+                
+                await BinaryWrite(writer ,TableID);
+                writer.Write(Time.Ticks);
+                writer.Write(Values.ID);
+                writer.Write(Values.CTime);
+                writer.Write(Values.Name);
+                writer.Write(Values.TYPE);
+                writer.Write(Values.VALUE_STR);
+                writer.Write(Values.VALUE_NUM);
+                writer.Write(Values.VALUE_RAW);
+            }
+        }
+        private static Task<UInt16> BinaryWrite(BinaryWriter writer, UInt16 value)
+        {
+            Task task = new Task(
+            () => writer.Write(value));
+            return task.Start();
+        }
+        private static int BinaryWrite(BinaryWriter writer, Int64 value)
+        {
+            writer.Write(value);
+            return 0;
+        }
+        private static int BinaryWrite(BinaryWriter writer, Int32 value)
+        {
+            writer.Write(value);
+            return 0;
+        }
+        private static int BinaryWrite(BinaryWriter writer, string value)
+        {
+            writer.Write(value);
+            return 0;
+        }
+        private static int BinaryWrite(BinaryWriter writer, char value)
+        {
+            writer.Write(value);
+            return 0;
+        }
+        private static int BinaryWrite(BinaryWriter writer, double value)
+        {
+            writer.Write(value);
+            return 0;
         }
     }
     
