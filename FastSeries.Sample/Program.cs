@@ -34,16 +34,19 @@ namespace FastSeries.Sample
                 VALUE_NUM = 123.00,
                 VALUE_RAW = "123.00"
             };
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 100; i++)
             {
                 data.Time = DateTime.Now - start;
+                if (i %50 == 0)
+                {
+                    data.Name += "1";
+                    data.VALUE_STR += "1";
+                }
                 writer.WriteItem( data);
-                Thread.Sleep(100);
             }
 
             writer.Flush();
             writer.Close();
-            read();
             System.Diagnostics.Debug.WriteLine(st.ElapsedTicks);
         }
 

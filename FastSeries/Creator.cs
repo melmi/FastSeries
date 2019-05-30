@@ -17,8 +17,15 @@ namespace FastSeries
 
         public static void Create(string fileName, params string[] tableDescriptions)
         {
-            using (var file = File.OpenWrite(fileName))
+            using (var file = File.Open(fileName, FileMode.Append, FileAccess.Write))
+            {
                 Create(file, tableDescriptions);
+            }
+                
+           // using (var file2 = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            {
+                //Create(file2, tableDescriptions);
+            }
         }
     }
 }

@@ -20,17 +20,19 @@ namespace FastSeries
         /// Create writer to writing data in DB.
         /// </summary>
         /// <param name="stream"></param>
-        public Writer(Stream stream)
+        public Writer(Stream stream, string path)
         {
             Stream = stream;
             var reader = new BinaryReader(Stream);
             var tableDescreiptions = Header.ReadHeader(reader);
             TableDescriptions = new ReadOnlyCollection<string>(tableDescreiptions);
+            stream.Close();
+            Stream = File.Open(path, FileMode.Append);
             writer = new BinaryWriter(Stream);
         }
 
         public Writer(string path)
-            : this(File.Open(path, FileMode.Open))
+            : this(File.Open(path, FileMode.Open), path)
         {
         }
         /// <summary>

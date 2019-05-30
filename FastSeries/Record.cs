@@ -24,7 +24,6 @@ namespace FastSeries
                 VALUE_STR = reader.ReadString(),
                 VALUE_NUM = reader.ReadDouble(),
                 VALUE_RAW = reader.ReadString()
-
         };
             return new Record { Values = values};
         }
@@ -33,7 +32,7 @@ namespace FastSeries
         {
             // buffer[curser].TableID = (UInt32)Values.TableID;
             //buffer[curser].Time = (Int64)Values.Time;
-            writer.Write((Int64)Values.TableID);
+            writer.Write((UInt32)Values.TableID);
             writer.Write((Int64)Values.Time.Ticks);
             writer.Write((Int32)Values.ID);
             writer.Write((string)Values.CTime);
