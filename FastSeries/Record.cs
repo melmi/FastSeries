@@ -31,11 +31,15 @@ namespace FastSeries
             return new Record { Time = time, TableID = tableID, Values = values};
         }
 
-        public async void WriteToStream(BinaryWriter writer)
+        public async void  WriteToStream(BinaryWriter writer)
         {
-            using(writer) {
-                
-                await BinaryWrite(writer ,TableID);
+             await BinaryWrite(writer);
+        }
+        private async Task BinaryWrite(BinaryWriter writer)
+        {
+            await Task.Run(() =>
+            {
+                writer.Write(TableID);
                 writer.Write(Time.Ticks);
                 writer.Write(Values.ID);
                 writer.Write(Values.CTime);
@@ -44,38 +48,7 @@ namespace FastSeries
                 writer.Write(Values.VALUE_STR);
                 writer.Write(Values.VALUE_NUM);
                 writer.Write(Values.VALUE_RAW);
-            }
-        }
-        private static Task<UInt16> BinaryWrite(BinaryWriter writer, UInt16 value)
-        {
-            Task task = new Task(
-            () => writer.Write(value));
-            return task.Start();
-        }
-        private static int BinaryWrite(BinaryWriter writer, Int64 value)
-        {
-            writer.Write(value);
-            return 0;
-        }
-        private static int BinaryWrite(BinaryWriter writer, Int32 value)
-        {
-            writer.Write(value);
-            return 0;
-        }
-        private static int BinaryWrite(BinaryWriter writer, string value)
-        {
-            writer.Write(value);
-            return 0;
-        }
-        private static int BinaryWrite(BinaryWriter writer, char value)
-        {
-            writer.Write(value);
-            return 0;
-        }
-        private static int BinaryWrite(BinaryWriter writer, double value)
-        {
-            writer.Write(value);
-            return 0;
+            });
         }
     }
     
