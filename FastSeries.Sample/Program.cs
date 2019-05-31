@@ -34,7 +34,7 @@ namespace FastSeries.Sample
                 VALUE_NUM = 123.00,
                 VALUE_RAW = "123.00"
             };
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1; i++)
             {
                 data.Time = DateTime.Now - start;
                 if (i %50 == 0)
