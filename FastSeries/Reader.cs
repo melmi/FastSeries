@@ -60,7 +60,12 @@ namespace FastSeries
             }
             return result;
         }
-
+        public List<Tuple<TimeSpan, Data>> ReadWithCTime()
+        {
+            var result = new List<Tuple<TimeSpan, Data>>();
+            
+            return result;
+        }
         public void Close()
         {
             Stream.Close();

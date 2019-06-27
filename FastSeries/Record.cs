@@ -17,15 +17,17 @@ namespace FastSeries
             Data values = new Data {
                 TableID = reader.ReadUInt32(),
                 Time = new TimeSpan(reader.ReadInt64()),
-                ID = reader.ReadInt32(),
-                CTime = reader.ReadString(),
-                Name = reader.ReadString(),
-                TYPE = reader.ReadChar(),
-                VALUE_STR = reader.ReadString(),
-                VALUE_NUM = reader.ReadDouble(),
-                VALUE_RAW = reader.ReadString()
+                intField = reader.ReadInt32(),
+                charsField = reader.ReadChars(21),
+                charField = reader.ReadChar(),
+                doubleField = reader.ReadDouble(),
+                boolField = reader.ReadBoolean()
         };
             return new Record { Values = values};
+        }
+        public static void MoveStream(BinaryReader reader)
+        {
+
         }
 
         public async void  WriteToStream(BinaryWriter writer)
@@ -34,18 +36,17 @@ namespace FastSeries
             //buffer[curser].Time = (Int64)Values.Time;
             writer.Write((UInt32)Values.TableID);
             writer.Write((Int64)Values.Time.Ticks);
-            writer.Write((Int32)Values.ID);
-            writer.Write((string)Values.CTime);
-            writer.Write((string)Values.Name);
-            writer.Write((char)Values.TYPE);
-            writer.Write((string)Values.VALUE_STR);
-            writer.Write((double)Values.VALUE_NUM);
-            writer.Write((string)Values.VALUE_RAW);
+            writer.Write((Int32)Values.intField);
+            writer.Write((char[])Values.charsField);
+            writer.Write((char)Values.charField);
+            writer.Write((double)Values.doubleField);
+            writer.Write((bool)Values.boolField);
             /*lock (writer)
             {
                 BinaryWrite(writer);
             }*/
         }
+        /*
         private async Task BinaryWrite(BinaryWriter writer)
         {
             await Task.Run(() =>
@@ -70,6 +71,7 @@ namespace FastSeries
                 writer.Write((string)Values.VALUE_RAW);
             });
         }
+        */
     }
     
 }
