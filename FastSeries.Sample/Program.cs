@@ -28,17 +28,7 @@ namespace FastSeries.Sample
                 TypeField = 'D',
                 DataField = BitConverter.GetBytes(123.23)
             };
-            for (int i = 0; i < 1; i++)
-            {
-                data.Time = DateTime.Now - start;
-                if (i %50 == 0)
-                {
-                    //data.Name += "1";
-                    //data.VALUE_STR += "1";
-                }
-                writer.WriteItem( data);
-            }
-
+            writer.WriteItem(data);
             writer.Flush();
             writer.Close();
             Debug.WriteLine(st.ElapsedTicks);
