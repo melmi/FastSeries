@@ -24,11 +24,9 @@ namespace FastSeries.Sample
             var start = DateTime.Now;
             Data data = new Data {
                 TableID = 0,
-                intField = 123,
-                charsField= string.Format("{0:s}", DateTime.Now).ToCharArray(),
-                charField = 'A',
-                doubleField = 123.123,
-                boolField = true
+                NameField = "hello, world!!!!!".ToCharArray(),
+                TypeField = 'D',
+                DataField = BitConverter.GetBytes(123.23)
             };
             for (int i = 0; i < 1; i++)
             {

@@ -14,12 +14,13 @@ namespace FunctionTest
             char[] fas = Enumerable.Repeat<char>('\0', 20).ToArray<char>();
             asd.CopyTo(fas, 0);
             DateTime date = DateTime.Now;
-            for(int i = 0; i< 10000; i++)
-            {
-                date = date.AddHours(i);
-                Console.WriteLine("---");
-                Console.WriteLine(string.Format("{0:s}", date).ToCharArray());
-            }
+            //for(int i = 0; i< 10000; i++)
+            //{
+            //    date = date.AddHours(i);
+            //    Console.WriteLine("---");
+            //    Console.WriteLine(string.Format("{0:s}", date).ToCharArray());
+           // }
+            Console.WriteLine(sizeof(bool));
             Console.ReadKey();
         }
     }

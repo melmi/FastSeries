@@ -7,40 +7,41 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 namespace FastSeries
 {
-    class Record
+    public class Record
     {
         Data[] buffer = new Data[10];
         int curser = 0;
         public Data Values;
         public static Record FromStream(BinaryReader reader)
         {
+            Debug.WriteLine(GetEndPos(reader));
+            Debug.WriteLine(Data.Size);
             Data values = new Data {
                 TableID = reader.ReadUInt32(),
                 Time = new TimeSpan(reader.ReadInt64()),
-                intField = reader.ReadInt32(),
-                charsField = reader.ReadChars(21),
-                charField = reader.ReadChar(),
-                doubleField = reader.ReadDouble(),
-                boolField = reader.ReadBoolean()
+                NameField = reader.ReadChars(Data.MaxChars),
+                TypeField = reader.ReadChar(),
+                DataField = reader.ReadBytes(Data.MaxDataBytes)
         };
             return new Record { Values = values};
         }
-        public static void MoveStream(BinaryReader reader)
+        public static void MoveStream(BinaryReader reader, int curser)
         {
-
+            reader.BaseStream.Seek(Data.Size*curser, SeekOrigin.Begin);
         }
-
-        public async void  WriteToStream(BinaryWriter writer)
+        public static long GetEndPos(BinaryReader reader)
+        {
+            return reader.BaseStream.Length;
+        }
+        public void  WriteToStream(BinaryWriter writer)
         {
             // buffer[curser].TableID = (UInt32)Values.TableID;
             //buffer[curser].Time = (Int64)Values.Time;
             writer.Write((UInt32)Values.TableID);
             writer.Write((Int64)Values.Time.Ticks);
-            writer.Write((Int32)Values.intField);
-            writer.Write((char[])Values.charsField);
-            writer.Write((char)Values.charField);
-            writer.Write((double)Values.doubleField);
-            writer.Write((bool)Values.boolField);
+            writer.Write((char[])Values.NameField);
+            writer.Write((char)Values.TypeField);
+            writer.Write((byte[])Values.DataField);
             /*lock (writer)
             {
                 BinaryWrite(writer);
