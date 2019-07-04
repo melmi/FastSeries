@@ -24,9 +24,10 @@ namespace FastSeries.Sample
             var start = DateTime.Now;
             Data data = new Data {
                 TableID = 0,
+                Time = new TimeSpan(DateTime.Now.Ticks),
                 NameField = "hello, world!!!!!".ToCharArray(),
-                TypeField = 'D',
-                DataField = BitConverter.GetBytes(123.23)
+                TypeField = 'I',
+                DataField = BitConverter.GetBytes(345678901)
             };
             writer.WriteItem(data);
             writer.Flush();
@@ -45,8 +46,10 @@ namespace FastSeries.Sample
                 Console.WriteLine("==========================");
                 reader.Reset();
                 var items = reader.ReadToEnd(0);
-                foreach (var item in items)
-                    Console.WriteLine("{0}    {1}", item.Item1.ToString(), item.Item2.ToString());
+                for (int i = 0; i < items.Count; i++)
+                {
+                    Console.WriteLine("{0}    {1}", new DateTime(items[i].Item1.Ticks).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ"), items[i].Item2.ToString());
+                }
             }
             reader.Close();
         }

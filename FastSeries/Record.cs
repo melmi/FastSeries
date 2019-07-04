@@ -7,12 +7,21 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 namespace FastSeries
 {
+    /// <summary>
+    /// Actually does write/read from database file
+    /// </summary>
     public class Record
     {
-        Data[] buffer = new Data[10];
-        int curser = 0;
+        /// <summary>
+        /// Data struct instance
+        /// </summary>
         public Data Values;
-        public static Record FromStream(BinaryReader reader)
+        /// <summary>
+        /// Read data from reader
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        public static Record ReadFromStream(BinaryReader reader)
         {
             Debug.WriteLine(GetEndPos(reader));
             Debug.WriteLine(Data.Size);
@@ -25,14 +34,20 @@ namespace FastSeries
         };
             return new Record { Values = values};
         }
+        //TODO: DO IT
         public static void MoveStream(BinaryReader reader, int curser)
         {
             reader.BaseStream.Seek(Data.Size*curser, SeekOrigin.Begin);
         }
+        //TODO: DO IT
         public static long GetEndPos(BinaryReader reader)
         {
             return reader.BaseStream.Length;
         }
+        /// <summary>
+        /// Write data through BinaryWriter
+        /// </summary>
+        /// <param name="writer"></param>
         public void  WriteToStream(BinaryWriter writer)
         {
             // buffer[curser].TableID = (UInt32)Values.TableID;
