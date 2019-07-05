@@ -7,8 +7,8 @@ namespace FastSeries
 {
     public struct Data
     {
-        public const int MaxChars = 256;
-        public const int MaxDataBytes = 256;
+        public const int MaxChars = 64;
+        public const int MaxDataBytes = 64;
         char[] tempStr;
         byte[] tempBytes;
         public UInt32 TableID { get; set; }
