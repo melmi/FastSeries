@@ -8,7 +8,7 @@ namespace FastSeries
     public struct Data
     {
         public const int MaxChars = 64;
-        public const int MaxDataBytes = 64;
+        public const int MaxDataBytes = 32;
         char[] tempStr;
         byte[] tempBytes;
         public UInt32 TableID { get; set; }
@@ -72,7 +72,6 @@ namespace FastSeries
             }
             
             return "/TableID: " + TableID
-                + "  /Inserted Time: " + Time.ToString()
                 + "  /Name: " + tempStr 
                 + "  /Type: " + TypeField
                 + "  /Data: " + tempBytes;

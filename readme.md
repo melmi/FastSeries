@@ -1,8 +1,8 @@
 # FastSeries
-
+forked from melmi/FastSeries
 ## Introduction
 
-*FastSeries* is a library to store multiple timeseries is binary format. 
+*FastSeries* is a library to store multiple timeseries in binary format. 
 This library works best for scenarios that writing performance is has the most importance.
 *FastSeries* is not so high performance in reading timeseries. *FastSeries* has zero dependency
 to other libraries. *FastSeries* is MIT licensed.

@@ -21,28 +21,15 @@ namespace FastSeries.Sample
             Console.WriteLine(">>> Writing data.");
 
             var writer = new FastSeries.Writer("test.db");
-            
             var start = DateTime.Now;
             Data data = new Data {
                 TableID = 0,
+                Time = new TimeSpan(DateTime.Now.Ticks),
                 NameField = "hello, world!!!!!".ToCharArray(),
-                TypeField = 'D',
-                DataField = BitConverter.GetBytes(123.23)
+                TypeField = 'I',
+                DataField = BitConverter.GetBytes(345678901)
             };
-            Stopwatch elapsed = new Stopwatch();
-            for (int i = 0; i < 100; i++)
-            {
-                elapsed.Start();
-                while (true)
-                {
-                    if (elapsed.ElapsedMilliseconds >= 1000) break;
-                    Thread.Sleep(1);
-                }
-                data.Time = new TimeSpan(DateTime.Now.Ticks);
-                writer.WriteItem(data);
-                elapsed.Stop();
-                elapsed.Reset();
-            }
+            writer.WriteItem(data);
             writer.Flush();
             writer.Close();
             Debug.WriteLine(st.ElapsedTicks);
@@ -59,8 +46,10 @@ namespace FastSeries.Sample
                 Console.WriteLine("==========================");
                 reader.Reset();
                 var items = reader.ReadToEnd(0);
-                foreach (var item in items)
-                    Console.WriteLine("{0}    {1}", item.Item1, item.Item2.ToString());
+                for (int i = 0; i < items.Count; i++)
+                {
+                    Console.WriteLine("{0}    {1}", new DateTime(items[i].Item1.Ticks).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ"), items[i].Item2.ToString());
+                }
             }
             reader.Close();
         }

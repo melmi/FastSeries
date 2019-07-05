@@ -9,12 +9,18 @@ using System.Threading.Tasks;
 namespace FastSeries
 {
     /// <summary>
-    /// TODO: Make it async/await
+    /// Create/Destroy write stream
     /// </summary>
     public class Writer
     {
-        public Stream Stream { get; private set; }
-        public ReadOnlyCollection<string> TableDescriptions { get; private set; }
+        /// <summary>
+        /// Writer's stream
+        /// </summary>
+        public Stream Stream { get; }
+        /// <summary>
+        /// Get current database's table descriptions
+        /// </summary>
+        public ReadOnlyCollection<string> TableDescriptions { get; }
         BinaryWriter writer;
         /// <summary>
         /// Create writer to writing data in DB.
@@ -30,7 +36,10 @@ namespace FastSeries
             Stream = File.Open(path, FileMode.Append);
             writer = new BinaryWriter(Stream);
         }
-
+        /// <summary>
+        /// Open database file to write item
+        /// </summary>
+        /// <param name="path"></param>
         public Writer(string path)
             : this(File.Open(path, FileMode.Open), path)
         {
