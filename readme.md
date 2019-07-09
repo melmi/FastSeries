@@ -1,5 +1,4 @@
 # FastSeries
-forked from melmi/FastSeries
 ## Introduction
 
 *FastSeries* is a library to store multiple timeseries in binary format. 
