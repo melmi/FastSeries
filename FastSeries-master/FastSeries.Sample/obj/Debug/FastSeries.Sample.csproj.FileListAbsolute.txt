@@ -1,0 +1,10 @@
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\bin\Debug\FastSeries.Sample.exe.config
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\bin\Debug\FastSeries.Sample.exe
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\bin\Debug\FastSeries.Sample.pdb
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\bin\Debug\FastSeries.dll
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\bin\Debug\FastSeries.pdb
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\obj\Debug\FastSeries.Sample.csprojAssemblyReference.cache
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\obj\Debug\FastSeries.Sample.csproj.CoreCompileInputs.cache
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\obj\Debug\FastSeries.Sample.csproj.CopyComplete
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\obj\Debug\FastSeries.Sample.exe
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries.Sample\obj\Debug\FastSeries.Sample.pdb

@@ -1,0 +1,6 @@
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries\bin\Debug\FastSeries.dll
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries\bin\Debug\FastSeries.pdb
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries\obj\Debug\FastSeries.csprojAssemblyReference.cache
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries\obj\Debug\FastSeries.csproj.CoreCompileInputs.cache
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries\obj\Debug\FastSeries.dll
+C:\Users\wheel\Documents\Personal\FastSeries-master\FastSeries\obj\Debug\FastSeries.pdb
